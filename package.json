@@ -1,0 +1,18 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Node js tutorial",
+  "main": "1-into.js",
+  "scripts": {
+    "test": "node js"
+  },
+  "keywords": [
+    "node",
+    "js"
+  ],
+  "author": "sagar chaudhary",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
