@@ -1,19 +1,29 @@
-let express = require('express');
-let app= express();
+const express = require("express");
+const path = require("path");
+const app = express();
 
-app.get('',(req,resp)=>{
-    console.log("data sent by user", req.query);
-    console.log("data sent by user", req.query.name);
+const filePath = path.join(__dirname,"public");
 
-    resp.send("Hello this is home page");
-})
+app.set('view engine','ejs');
 
-app.get("/about",(req,resp)=>{
-    resp.send("This is about page");
-})
-
-app.get("/help",(req,resp)=>{
-    resp.send("hello this is about page");
+app.get('/',(_,resp)=>{
+    resp.sendFile(`${filePath}/index.html`);
 });
 
-app.listen(5000)
+
+app.get('/profile',(_,resp)=>{
+    const user={
+        name :"sagar",
+        email:"sagar@gmail.com",
+        age:21,
+    }
+    resp.render('profile',{user});
+})
+
+
+//Ejs file rendering
+
+app.listen(5000,()=>{
+    console.log("server is running on port 5000");
+});
+
