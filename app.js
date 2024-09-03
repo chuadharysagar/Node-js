@@ -1,29 +1,16 @@
-const express = require("express");
-const path = require("path");
-const app = express();
+const {MongoClient} = require('mongodb');
 
-const filePath = path.join(__dirname,"public");
+const database ='e-com'
+const url = 'mongodb://localhost:27017';
+const client = new MongoClient(url);
 
-app.set('view engine','ejs');
-
-app.get('/',(_,resp)=>{
-    resp.sendFile(`${filePath}/index.html`);
-});
-
-
-app.get('/profile',(_,resp)=>{
-    const user={
-        name :"sagar",
-        email:"sagar@gmail.com",
-        age:21,
-    }
-    resp.render('profile',{user});
-})
+async function getData(){
+    let result = await client.connect(); //  fro result return a promise
+    let db = result.db(database);
+    let collection = db.collection('products');
+    let response = await collection.find({brand:'redmi'}).toArray()
+    console.log(response);
+}
 
 
-//Ejs file rendering
-
-app.listen(5000,()=>{
-    console.log("server is running on port 5000");
-});
-
+getData();

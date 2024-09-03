@@ -4,8 +4,6 @@ const app = express();
 
 const filePath = path.join(__dirname,"public");
 
-// EJS Engine to create the dynamic pages and inject the data to html by server
-// Embeded javascript (ejs)
 app.set('view engine','ejs');
 
 app.get('/',(_,resp)=>{
@@ -18,11 +16,19 @@ app.get('/profile',(_,resp)=>{
         name :"sagar",
         email:"sagar@gmail.com",
         country :'Nepal',
-        skills :['Python','Java','C','C++'],
+        skills :['Python','Java','C','C++','js'],
     }
     resp.render('profile',{user});
 })
 
+
+app.get('/login',(_,resp)=>{
+    resp.render('login');
+})
+
+// app.get('/header',(_,resp)=>{
+//     resp.render('header');
+// })   
 
 //Ejs file rendering
 
