@@ -6,6 +6,11 @@ const delData =async()=>{
     try {
      const db = await dbConnection();
      let result = await db.deleteMany({product:'mobile'});
+
+     if(result.acknowledged){
+     console.log(result);
+     console.log("Record deleted");
+     }
      
     } catch (error) {
      console.error("Error deleting data",error);
